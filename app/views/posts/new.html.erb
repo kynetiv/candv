@@ -1,0 +1,28 @@
+<% content_for :title do %>Add a new post<% end %><div class="container">
+	<div class="form-horizontal">
+		<form id="new_user" action="/users/new" method="post">
+			<div class="control-group">
+				<h1>Add a Post!</h1>
+				<div class="control-label">
+					<label for="user_name">Name: </label>
+				</div>
+				<div class="controls">
+					<input type="text" name="user['name']" />
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="control-label">
+					<label for="email">Post: </lable>
+				</div>
+				<div class="controls">
+					<textarea></textarea>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<input type="submit" class="btn btn-info" value="Post!"/>
+				</div>
+			<div>
+		</form>
+	</div>
+</div>
