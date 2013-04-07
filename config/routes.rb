@@ -1,5 +1,6 @@
 Candv::Application.routes.draw do
-resources :users, :posts
+resources :users
+resources :posts
 
 
 
@@ -8,9 +9,9 @@ resources :users, :posts
 
   # get "posts/new"
 
-  # get "users/index"
+  get "users/index"
 
-  # get "users/new"
+  get "users/new"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

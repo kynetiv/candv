@@ -13,10 +13,11 @@ class UsersController < ApplicationController
   	@new_user = User.new(params[:new_user])
 
   	if @new_user.save
-  		flash[:notice] = "Sucess!"
-  		redirect_to :controller => 'users', :action => 'index'
+  		flash[:success] = "Success!"
+  		redirect_to users_path
   	else 
-  		render :action => 'new'
+  		@new_user.errors
+  		render 'new'
 	end
 
 end
