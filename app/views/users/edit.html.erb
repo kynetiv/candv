@@ -1,0 +1,64 @@
+<% content_for :title do %>Edit user<% end %>
+<div class="container">
+	<div id="new_messages">
+	<% if @user %>
+	<ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+    <% end %>
+	</div>
+		<h1>Edit User Account Details</h1>
+	<form class="offset9" id="delete" action="/users/<%= @user.id %>" method="post">
+		<input name="_method" type="hidden" value="delete" />
+		<input type="submit" class="btn btn-danger" value="Delete User" />
+	</form>
+	<div class="form-horizontal">
+		<form id="update" action="/users/<%= @user.id %>" method="post">
+			<div class="control-group">	
+				<div class="controls">
+					<input name="_method" type="hidden" value="put" />
+					<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" />
+				</div>
+			</div>
+			<div class="control-group">	
+				<div class="control-label">
+					<label for="first_name">First Name: </label>
+				</div>
+				<div class="controls">
+					<input type="text" name="update[first_name]" value="<%= @user.first_name %>"/>
+				</div>
+			</div>
+			<div class="control-group">	
+				<div class="control-label">
+					<label for="last_name">Last Name: </label>
+				</div>
+				<div class="controls">
+					<input type="text" name="update[last_name]" value="<%= @user.last_name %>" />
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="control-label">
+					<label for="email">Email: </lable>
+				</div>
+				<div class="controls">
+					<input type="text" name="update[email_address]" value="<%= @user.email_address %>"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="control-label">
+					<label for="password">Password: </lable>
+				</div>
+				<div class="controls">
+					<input type="text" name="update[password]" value="<%= @user.password %>" />
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<input type="submit" class="btn btn-info" value="Join!"/>
+				</div>
+			<div>
+		</form>
+	</div>
+</div>
