@@ -1,6 +1,7 @@
 <% content_for :title do %>Edit user<% end %>
 <div class="container">
 <h1>Edit User Account Details</h1>
+
 	<%= simple_form_for @user, :html => { :id => 'delete', :method => 'delete'} do |f| %>
 	<%= f.button :submit, 'Delete User', :class => 'btn-danger offset2' %>
 	<% end %>
