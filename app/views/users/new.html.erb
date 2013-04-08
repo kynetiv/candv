@@ -1,64 +1,12 @@
 <% content_for :title do %>Add a new user<% end %>
 <div class="container">
-	<div id="new_messages">
-	<% if @new_user %>
-	<ul>
-      <% @new_user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-    <% end %>
-
-	</div>
-	<div class="form-horizontal">
-		<form id="users" action="/users" method="post">
-			<div class="control-group">
-				<div class="controls">
-					<h1>Join the Crew</h1>
-				</div>
-			</div>
-			<div class="control-group">	
-				<div class="controls">
-					<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-				</div>
-			</div>
-			<div class="control-group">	
-				<div class="control-label">
-					<label for="first_name">First Name: </label>
-				</div>
-				<div class="controls">
-					<input type="text" name="new_user[first_name]" />
-				</div>
-			</div>
-			<div class="control-group">	
-				<div class="control-label">
-					<label for="last_name">Last Name: </label>
-				</div>
-				<div class="controls">
-					<input type="text" name="new_user[last_name]" />
-				</div>
-			</div>
-			<div class="control-group">
-				<div class="control-label">
-					<label for="email">Email: </lable>
-				</div>
-				<div class="controls">
-					<input type="text" name="new_user[email_address]" />
-				</div>
-			</div>
-			<div class="control-group">
-				<div class="control-label">
-					<label for="password">Password: </lable>
-				</div>
-				<div class="controls">
-					<input type="text" name="new_user[password]" />
-				</div>
-			</div>
-			<div class="control-group">
-				<div class="controls">
-					<input type="submit" class="btn btn-info" value="Join!"/>
-				</div>
-			<div>
-		</form>
-	</div>
+	<h1>Join the Crew</h1>
+	<%= simple_form_for @user, :html => { :id => 'user', :class => '.form-horizontal' } do |f| %>
+	<%= f.error_notification %>
+	<%= f.input :first_name %>
+	<%= f.input :last_name %>
+	<%= f.input :email_address %>
+	<%= f.input :password %>
+	<%= f.button :submit %>
+	<% end %>
 </div>

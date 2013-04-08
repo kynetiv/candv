@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def new
-
+  	@user = User.new
   end
 
   def edit
@@ -18,9 +18,9 @@ class UsersController < ApplicationController
   end
 
   def create
-  	@new_user = User.new(params[:new_user])
+  	@user = User.new(params[:user])
 
-  		if @new_user.save
+  		if @user.save
   			flash[:success] = "Success: New User Created!"
   			redirect_to users_path
   	
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
 
-		if @user.update_attributes(params[:update])
+		if @user.update_attributes(params[:user])
 			flash[:success] = "User Profile Updated!"
 			redirect_to @user
 
