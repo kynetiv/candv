@@ -2,58 +2,11 @@
 <div class="hero-unit">
 	<h3>Add a Product</h3>
 </div>
-<% if @product %>
-<ul>
-	<% @product.errors.full_messages.each do |msg| %>
-	<li><%= msg %></li>
-	<% end %>
-</ul>
+<%= simple_form_for @product, :html => {:id => 'product', :class => '.form-horizontal offset1'} do |f| %>
+	<%= f.error_notification %>
+	<%= f.association :category, :selected => 'category.name' %>
+	<%= f.input :name %>
+	<%= f.input :description, :as => :string %>
+	<%= f.input :pricing, :as => :string %>
+	<%= f.button :submit, :class => 'btn btn-info' %>
 <% end %>
-
-<form id="products" action="/products" method="post" class="form-horizontal">
-	<div class="control-group">
-		<div class="controls">
-		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-		</div>
-	</div>
-	<div class="control-group">
-		<div class="control-label">
-			<label for="id">Product Category: </label>
-		</div>
-		<div class="controls">
-			<select name="id" />
-				<option selected value=1>Kitchen</option>
-				<option value=2>Garden</option>
-			</select>
-		</div>
-	</div>
-	<div class="control-group">
-		<div class="control-label">
-			<label for="name">Product Name: </label>
-		</div>
-		<div class="controls">
-			<input type="text" name="product[name]" />
-		</div>
-	</div>
-	<div class="control-group">
-		<div class="control-label">
-			<label for="name">Product Description: </label>
-		</div>
-		<div class="controls">
-			<input type="text" name="product[description]" />
-		</div>
-	</div>
-	<div class="control-group">
-		<div class="control-label">
-			<label for="name">Product Pricing: </label>
-		</div>
-		<div class="controls">
-			<input type="text" name="product[pricing]" /><span class="help-inline">Numerical Values, please.</span>
-		</div>
-	</div>
-	<div class="control-group">
-		<div class="controls">
-			<button type="submit" class="btn btn-info offset2">Add</button>
-		</div>
-	</div>
-	

@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.all
+
   end
 
   def show
@@ -8,15 +9,15 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @products = Product.new
+    @product = Product.new
   end
 
   def edit
-    @products = Product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   def create
-    @product = Category.find_by_id(params[:id]).products.new(params[:product])
+    @product = Product.new(params[:product])
 
     if @product.save
       flash[:success] = "Product Added"
@@ -28,11 +29,11 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @products = Product.find(params[:id])
+    @product = Product.find(params[:id])
 
-    if @products.update_attributes(params[:update])
+    if @product.update_attributes(params[:product])
       flash[:success] = "Success: Product Updated!"
-      redirect_to @products
+      redirect_to @product
 
     else
       render 'edit'

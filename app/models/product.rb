@@ -13,7 +13,6 @@
 
 class Product < ActiveRecord::Base
   belongs_to :category
-  attr_accessible :description, :name, :pricing
+  attr_accessible :description, :name, :pricing, :category_id
   validates :category, :description, :name, :pricing, :presence => true
-
 end

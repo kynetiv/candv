@@ -1,27 +1,26 @@
 <% content_for :title do %>Show Product<% end %>
 <div class="hero-unit">
-	<h3>Product: <%= @products.name %></h3>	
+	<h3>Product: </h3>
+	<h3><%= @products.name %></h3>	
 </div>
 <div class="well">
-		<% flash.each do |key, value| %>
+	<% flash.each do |key, value| %>
 		<div class="alert alert-<%= key %>"><h3><%= value %></h3></div>		
-		<% end %>
-		<table class="table table-striped table-bordered">
-			<thead>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Description</th>
-				<th>Pricing</th>
-				<th>Edit Product</th>
-			</thead>
-			<tr>
-				<td><%= @products.id %></td>
-				<td><%= @products.name %></td>
-				<td><%= @products.description %></td>
-				<td><%= @products.pricing %></td>
-				<td><%= link_to( 'EDIT', edit_product_path(@products.id) ) %></td>
-			</tr>
-		</table>
-	</div>
+	<% end %>
+	<table class="table table-striped table-bordered">
+		<thead>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Pricing</th>
+			<th>Edit Product</th>
+		</thead>
+		<tr>
+			<td><%= @products.id %></td>
+			<td><%= @products.name %></td>
+			<td><%= @products.description %></td>
+			<td><%= @products.pricing %></td>
+			<td><%= link_to( 'EDIT', edit_product_path(@products.id) ) %></td>
+		</tr>
+	</table>
 </div>
-

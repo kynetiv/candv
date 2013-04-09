@@ -1,57 +1,15 @@
 <% content_for :title do %>Edit Product<% end %>
 <div class="hero-unit">
-	<h3>Edit Product Details: <%= @products.name %></h3>
+	<h3>Edit Product Details: </h3>
+	<h3><%= @product.name %></h3>
 </div>
-<div id="product_messages">
-	<% if @products %>
-	<ul>
-      <% @products.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-    <% end %>
-	</div>
-	<form class="offset1" id="delete" action="/products/<%= @products.id %>" method="post">
-		<input name="_method" type="hidden" value="delete" />
-		<input type="submit" class="btn btn-danger" value="Delete Product" />
-	</form>
-	<div class="form-horizontal">
-		<form id="update" action="/products/<%= @products.id %>" method="post">
-			<div class="control-group">	
-				<div class="controls">
-					<input name="_method" type="hidden" value="put" />
-					<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" />
-				</div>
-			</div>
-			<div class="control-group">	
-				<div class="control-label">
-					<label for="name">Name: </label>
-				</div>
-				<div class="controls">
-					<input type="text" name="update[name]" value="<%= @products.name %>"/>
-				</div>
-			</div>
-			<div class="control-group">	
-				<div class="control-label">
-					<label for="description">Description: </label>
-				</div>
-				<div class="controls">
-					<input type="text" name="update[description]" value="<%= @products.description %>" />
-				</div>
-			</div>
-			<div class="control-group">
-				<div class="control-label">
-					<label for="pricing">Pricing: </lable>
-				</div>
-				<div class="controls">
-					<input type="text" name="update[pricing]" value="<%= @products.pricing %>" />
-				</div>
-			</div>
-			<div class="control-group">
-				<div class="controls">
-					<input type="submit" class="btn btn-info" value="Update!"/>
-				</div>
-			<div>
-		</form>
-	</div>
-</div>
+<%= simple_form_for @product, :html => { :id => 'delete', :method => 'delete'} do |f| %>
+	<%= f.button :submit, 'Delete Product', :class => 'btn-danger offset1' %>
+<% end %>
+<%= simple_form_for @product, :html => { :id => 'edit', :class => '.form-horizontal offset1'} do |f| %>
+	<%= f.error_notification %>
+	<%= f.input :name %>
+	<%= f.input :description, :as => :string %>
+	<%= f.input :pricing, :as => :string, :hint => 'USD only, please' %>
+	<%= f.button :submit, :class => 'btn btn-info offset1' %>
+<% end %>
